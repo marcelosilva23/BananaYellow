@@ -1,2 +1,5 @@
-package io.codeforall.kernelfc;public class Score {
+package io.codeforall.kernelfc;
+
+public class Score {
+
 }
