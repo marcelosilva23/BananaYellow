@@ -8,7 +8,7 @@ public class Bird {
 
     private boolean jumping = false;
 
-    public Bird (pos){
+    /*public Bird (pos){
         this.pos = pos;
         this.isFried = isFried;
         //this.size = size;
@@ -43,7 +43,7 @@ public class Bird {
     public boolean jump getKEY_SPACE() {
        jumping = true;
        return pos = y++;
-    }
+    }*/
 
 
 }

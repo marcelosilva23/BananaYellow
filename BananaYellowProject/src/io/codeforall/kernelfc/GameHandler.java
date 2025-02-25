@@ -7,7 +7,7 @@ import org.academiadecodigo.simplegraphics.pictures.Picture;
 
 public class GameHandler {
 
-    public class GameHandler implements KeyboardHandler {
+   /* public class GameHandler implements KeyboardHandler {
 
         private Keyboard keyboard;
 
@@ -122,5 +122,5 @@ public class GameHandler {
         public void keyReleased(KeyboardEvent keyboardEvent) {
 
         }
-    }
+    }*/
 }
