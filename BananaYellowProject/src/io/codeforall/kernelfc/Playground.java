@@ -3,16 +3,19 @@ package io.codeforall.kernelfc;
 import org.academiadecodigo.simplegraphics.graphics.Rectangle;
 
 public class Playground {
-    public static void main(String[] args) {
-        System.out.println("Hello, World!");
-        System.out.println("im a chicken");
+    public static void main(String[] args) throws InterruptedException {
 
-        System.out.println("im also a chicken named rafael");
-        System.out.println("LO Test");
-
-        Rectangle rect = new Rectangle(10, 10, 700, 500);
+        Rectangle rect = new Rectangle(10, 10, 1500, 1100);
         rect.draw();
 
+
         Pipe pipe = new Pipe(100);
+        Bird bird = new Bird(50)
+
+        while (pipe.X > -1000) {
+                bird.move();
+                pipe.move();
+                Thread.sleep(10);
+        }
     }
 }
