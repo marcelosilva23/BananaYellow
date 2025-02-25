@@ -1,11 +1,15 @@
 package io.codeforall.kernelfc;
-
-import org.academiadecodigo.simplegraphics.graphics.Rectangle;
+import org.academiadecodigo.simplegraphics.keyboard.Keyboard;
+import org.academiadecodigo.simplegraphics.keyboard.KeyboardEvent;
+import org.academiadecodigo.simplegraphics.keyboard.KeyboardEventType;
+import org.academiadecodigo.simplegraphics.keyboard.KeyboardHandler;
+import org.academiadecodigo.simplegraphics.pictures.Picture;
 import org.academiadecodigo.simplegraphics.pictures.Picture;
 
-public class Bird {
-
-    double y;
+public class Bird  implements KeyboardHandler {
+    private Keyboard keyboard = new Keyboard(this);
+    double gravity;
+    Picture bird;
 
     private boolean isDead = false;
 
@@ -17,14 +21,54 @@ public class Bird {
 
     public double X = startingPosition;
 
-    public Bird bird(double y) {
-        this.y = y;
-        new Picture(startingPosition, y - gap, "resources/toppipe.png");
+    double y;
 
-        upPipe.draw();
-        downPipe.draw();
+    public Bird() {
+
+        bird = new Picture(startingPosition, X, "resources/bird.png");
+
+        bird.draw();
+        createKeyboardEvents();
+    }
+
+    //fazer move, if falling not jumping, if jumping not falling
+
+    public void fall() {
+        bird.translate(0, +1);
+        gravity++;
+       /* while (!jumping || !isDead) {
+            int gravity =*1.1;*/
+    }
+
+    public void  jump() {
+        jumping = true;
+        bird.translate(0, -100);
+        y--;
+    }
+
+    @Override
+    public void keyPressed(KeyboardEvent keyboardEvent) {
+        switch (keyboardEvent.getKey()) {
+            case KeyboardEvent.KEY_SPACE:
+                jump();
+                break;
+        }
+    }
+    @Override
+    public void keyReleased(KeyboardEvent keyboardEvent) {
+
+    }
+
+    public void createKeyboardEvents() {
+
+        KeyboardEvent keyboardEventSpace = new KeyboardEvent();
+        keyboardEventSpace.setKey(KeyboardEvent.KEY_SPACE);
+        keyboardEventSpace.setKeyboardEventType(KeyboardEventType.KEY_PRESSED);
+        keyboard.addEventListener(keyboardEventSpace);
 
 
+    }
+}
    /* public Bird (pos){
         this.pos = pos;
         this.isFried = isFried;
@@ -33,7 +77,7 @@ public class Bird {
         jump();
     }*/
 
-        public boolean isDead () {
+        /*public boolean isDead () {
             return isDead;
         }
 
@@ -59,7 +103,6 @@ public class Bird {
         public boolean jump getKEY_SPACE() {
             jumping = true;
             return pos = y++;
-        }
+        }*/
 
 
-    }
