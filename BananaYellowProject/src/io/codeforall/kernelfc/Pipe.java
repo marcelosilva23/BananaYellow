@@ -31,4 +31,12 @@ public class Pipe {
         pipeScore.translate(-1, 0);
         X--;
     }
+
+    public double getY() {
+        return y;
+    }
+
+    public void setY(double y) {
+        this.y = y;
+    }
 }
