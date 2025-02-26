@@ -7,7 +7,12 @@ import org.academiadecodigo.simplegraphics.pictures.Picture;
 
 public class GameHandler {
 
-   /* public class GameHandler implements KeyboardHandler {
+
+    
+    while
+    Pipe pipe = new Pipe;
+
+    /* public class GameHandler implements KeyboardHandler {
 
         private Keyboard keyboard;
 

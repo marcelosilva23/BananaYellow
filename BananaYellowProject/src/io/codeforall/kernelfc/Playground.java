@@ -17,18 +17,18 @@ public class Playground {
        // background adicionado mas as dimensoes estao erradas, temos de dar fix
         background = new Picture(10, 0, "resources/background.png");
         background.draw();
-        // Math random do eixo Y no spawn das pipes, a transferir para o pipeFactory ( esta la comentado)
+        // Math random do eixo Y no spawn das pipes.
         int yMax = 500;
-        int yMin = -250;
+        int yMin = -200;
        Pipe pipe = new Pipe(Math.random() * (yMax - yMin) + yMin);
         Bird bird = new Bird();
 
 
-        while (pipe.X > -1000) {
+        while (game == true) {
             pipe.move();
             bird.fall();
 
-            Thread.sleep(10);
+            Thread.sleep(8);
         }
 
     }
