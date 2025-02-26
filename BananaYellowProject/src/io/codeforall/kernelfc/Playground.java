@@ -8,6 +8,8 @@ import org.academiadecodigo.simplegraphics.pictures.Picture;
 import org.academiadecodigo.simplegraphics.graphics.Rectangle;
 import org.academiadecodigo.simplegraphics.keyboard.KeyboardEvent;
 
+import java.util.ArrayList;
+
 public class Playground {
     public static void main(String[] args) throws InterruptedException {
 
@@ -18,18 +20,23 @@ public class Playground {
         background = new Picture(10, 0, "resources/background.png");
         background.draw();
         // Math random do eixo Y no spawn das pipes.
-        int yMax = 500;
-        int yMin = -200;
-       Pipe pipe = new Pipe(Math.random() * (yMax - yMin) + yMin);
+
         Bird bird = new Bird();
+GameHandler game = new GameHandler();
 
-
+ArrayList<Pipe> arrayPipe = new ArrayList<>();
+        arrayPipe.add(PipeFactory.pipeCreator());
 
         while (true) {
-            pipe.move();
+
+if(arrayPipe.get(arrayPipe.size()-1).getX() < 900){
+    arrayPipe.add(PipeFactory.pipeCreator());
+}
             bird.fall();
-            ColisionHandler.isColliding(pipe, bird);
-            Thread.sleep(2);
+            for (Pipe pipe : arrayPipe){
+                pipe.move();
+            }
+            Thread.sleep(12);
         }
 
     }
