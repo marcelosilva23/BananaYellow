@@ -4,46 +4,48 @@ import org.academiadecodigo.simplegraphics.keyboard.KeyboardEvent;
 import org.academiadecodigo.simplegraphics.keyboard.KeyboardEventType;
 import org.academiadecodigo.simplegraphics.keyboard.KeyboardHandler;
 import org.academiadecodigo.simplegraphics.pictures.Picture;
-import org.academiadecodigo.simplegraphics.pictures.Picture;
 
 public class Bird  implements KeyboardHandler {
     private Keyboard keyboard = new Keyboard(this);
+
+    // handles gravity acceleratiion (to be implemented)
     double gravity;
-    Picture bird;
+    public Picture bird;
 
-    private boolean isDead = false;
-
-    private final static int SPEED = 1;
+    public int jumpHeight = 100;
 
     private boolean jumping = false;
 
-    double startingPosition = 100;
+    // starting X position
+    int startingPosition = 100;
 
-    public double X = startingPosition;
+    public int X = startingPosition;
 
-    double y;
+    int Y = 100;
 
     public Bird() {
-
-        bird = new Picture(startingPosition, X, "resources/bird.png");
+        System.out.println(Y);
+        bird = new Picture(startingPosition, Y, "resources/bird.png");
 
         bird.draw();
         createKeyboardEvents();
     }
 
-    //fazer move, if falling not jumping, if jumping not falling
+    //do move, if falling not jumping, if jumping not falling
 
     public void fall() {
         bird.translate(0, +1);
+        Y++;
         gravity++;
        /* while (!jumping || !isDead) {
             int gravity =*1.1;*/
     }
 
+    // bird jumping logic
     public void  jump() {
         jumping = true;
-        bird.translate(0, -100);
-        y--;
+        bird.translate(0, -jumpHeight);
+        Y -= jumpHeight;
     }
 
     @Override
@@ -68,41 +70,18 @@ public class Bird  implements KeyboardHandler {
 
 
     }
+
+    //getters
+    public int getWidth(){
+        return bird.getWidth();
+    }
+
+    public int getHeight(){
+        return bird.getHeight();
+    }
+
+
 }
-   /* public Bird (pos){
-        this.pos = pos;
-        this.isFried = isFried;
-        //this.size = size;
-        gravity();
-        jump();
-    }*/
 
-        /*public boolean isDead () {
-            return isDead;
-        }
-
-        public GridPosition getPos () {
-            return pos;
-        }
-
-
-        inicialPos(x, y, )
-
-        private boolean isDead () {
-            if (pos.y = 10)
-                isFried = true;
-        }
-
-
-        public void move () {
-            gravity++;
-            while (!jumping || !isFried)
-                accelerate(currentDirection(), Bird.SPEED * 1.1);
-        }
-
-        public boolean jump getKEY_SPACE() {
-            jumping = true;
-            return pos = y++;
-        }*/
 
 

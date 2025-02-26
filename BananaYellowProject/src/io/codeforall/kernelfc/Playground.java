@@ -24,11 +24,12 @@ public class Playground {
         Bird bird = new Bird();
 
 
-        while (game == true) {
+
+        while (true) {
             pipe.move();
             bird.fall();
-
-            Thread.sleep(8);
+            ColisionHandler.isColliding(pipe, bird);
+            Thread.sleep(2);
         }
 
     }

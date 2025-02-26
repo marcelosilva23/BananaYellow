@@ -54,4 +54,16 @@ public class Pipe {
         this.gap = gap;
     }
 
+    public double getX() {
+        return X;
+    }
+
+    public void setX(double x) {
+        X = x;
+    }
+
+    public int getWidth(){
+        return downPipe.getWidth();
+    }
+
 }

@@ -6,11 +6,15 @@ import org.academiadecodigo.simplegraphics.keyboard.KeyboardHandler;
 import org.academiadecodigo.simplegraphics.pictures.Picture;
 
 public class GameHandler {
-
-
+    // score
+    // player
+    // pipe array
+    // game loop
+        // pipe factory
+        // check colision
     
-    while
-    Pipe pipe = new Pipe;
+   //while
+    //Pipe pipe = new Pipe;
 
     /* public class GameHandler implements KeyboardHandler {
 
