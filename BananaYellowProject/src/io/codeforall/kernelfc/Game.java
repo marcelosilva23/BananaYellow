@@ -10,9 +10,13 @@ public class Game {
 
 
 <<<<<<< HEAD
+<<<<<<< HEAD
     
 =======
 >>>>>>> 61b40f8 (Merge pull,moved pseudo)
+=======
+    
+>>>>>>> e080f99 (fixed conflicts)
 
 }
 */
