@@ -36,6 +36,7 @@ if(arrayPipe.get(arrayPipe.size()-1).getX() < 900){
             for (Pipe pipe : arrayPipe){
                 pipe.move();
             }
+            ColisionHandler.isColliding(arrayPipe, bird);
             Thread.sleep(12);
         }
 

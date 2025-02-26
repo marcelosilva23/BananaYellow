@@ -1,14 +1,15 @@
 package io.codeforall.kernelfc;
 
+import java.util.ArrayList;
+
 public class ColisionHandler {
     public static int topLimit  = 10;
     public static int bottomLimit = 1100;
 
     // isColiding return if is colliding ? true : false
     // todo: implement colision with score
-    public static boolean isColliding(Pipe[] pipes, Bird bird){
+    public static boolean isColliding(ArrayList<Pipe> pipes, Bird bird){
         // is hitting the top or bottom Limit?
-        System.out.println(bird.Y);
         if (bird.Y < topLimit || bird.Y > bottomLimit){
             System.out.println("bird hit the limit");
             return true;
@@ -42,11 +43,5 @@ public class ColisionHandler {
         return false;
     }
 
-    // if isColliding is called with a single pipe instead of array
-    public static boolean isColliding(Pipe pipe, Bird bird){
-        Pipe[] pipes = new Pipe[1];
-        pipes[0]  = pipe;
-        return isColliding(pipes, bird);
-    }
 
 }
