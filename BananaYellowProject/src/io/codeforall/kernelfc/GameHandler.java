@@ -14,7 +14,8 @@ public class GameHandler {
     static boolean isGameRunning = true;
     static int screenWidth = 1500;
     static int screenHeight = 1100;
-    static int pipeSpawnPosition = 600;
+    static int pipeSpawnPosition = 1000;
+    static int pipeSpeed = 5;
 
     public static void main(String[] args) throws InterruptedException {
 
@@ -55,7 +56,7 @@ public class GameHandler {
             if (ColisionHandler.isColliding(arrayPipe, bird)){
                 bird.isDead = true;
             }
-            Thread.sleep(5);
+            Thread.sleep(20);
         }
 
     }

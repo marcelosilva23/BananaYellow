@@ -32,10 +32,10 @@ public class Pipe {
 
     // moves the pipe group 1px to the left, used for the automove of the pipes
     public void move() {
-        upPipe.translate(-1, 0);
-        downPipe.translate(-1, 0);
-        pipeScore.translate(-1, 0);
-        X--;
+        upPipe.translate(-GameHandler.pipeSpeed, 0);
+        downPipe.translate(-GameHandler.pipeSpeed, 0);
+        pipeScore.translate(-GameHandler.pipeSpeed, 0);
+        X = upPipe.getX();
     }
 
     //getters / setters

@@ -5,6 +5,8 @@ import org.academiadecodigo.simplegraphics.graphics.Text;
 public class Score {
     public static int score = 0;
     public static Text scoreImg;
+    public static int dificultyMultiplier  = 100;
+    public static int minDistanceBetweenPipes = 100;
 
 
     public Score() {
@@ -21,10 +23,11 @@ public class Score {
     // add score
     public static void add(int ammount) {
         score += ammount;
-        int temp = GameHandler.pipeSpawnPosition + (ammount * 10);
-        if (temp > 10) {
+
+        int temp = GameHandler.pipeSpawnPosition + (ammount * dificultyMultiplier);
+        if (temp < minDistanceBetweenPipes) {
             GameHandler.pipeSpawnPosition = temp;
-            System.out.println(score);
+            System.out.println("temp" + temp);
         }
     }
 
