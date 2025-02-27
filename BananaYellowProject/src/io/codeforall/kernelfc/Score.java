@@ -24,9 +24,9 @@ public class Score {
     public static void add(int ammount) {
         score += ammount;
 
-        int temp = GameHandler.pipeSpawnPosition + (ammount * dificultyMultiplier);
+        int temp = GameHandler.newPipeSpawnPosition + (ammount * dificultyMultiplier);
         if (temp < minDistanceBetweenPipes) {
-            GameHandler.pipeSpawnPosition = temp;
+            GameHandler.newPipeSpawnPosition = temp;
             System.out.println("temp" + temp);
         }
     }

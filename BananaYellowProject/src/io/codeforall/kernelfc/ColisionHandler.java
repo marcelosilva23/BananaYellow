@@ -6,17 +6,17 @@ import org.academiadecodigo.simplegraphics.pictures.Picture;
 import java.util.ArrayList;
 
 public class ColisionHandler {
-    public static int topLimit  = 10;
-    public static int bottomLimit = 1100;
-    public static int threashHold = 10;
+    public static int topLimit  = 0;
+    public static int bottomLimit = 875;
+    public static int imageThreshHold = 25;
 
     // automatic collision detection
     public static boolean checkColision(Picture obstacle, Bird bird){
         if(
-                obstacle.getX() < bird.X + bird.getWidth() - threashHold&&
-                        obstacle.getX() + obstacle.getWidth() > bird.X + threashHold&&
-                        obstacle.getY() < bird.Y + bird.getHeight() - threashHold &&
-                        obstacle.getY() + obstacle.getHeight() > bird.Y + threashHold ){
+                obstacle.getX() < bird.X + bird.getWidth() - imageThreshHold&&
+                        obstacle.getX() + obstacle.getWidth() > bird.X + imageThreshHold&&
+                        obstacle.getY() < bird.Y + bird.getHeight() - imageThreshHold &&
+                        obstacle.getY() + obstacle.getHeight() > bird.Y + imageThreshHold ){
             return true;
         }
         return false;

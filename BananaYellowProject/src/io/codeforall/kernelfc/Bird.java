@@ -73,10 +73,6 @@ public class Bird  implements KeyboardHandler {
         keyboardEventSpace.setKeyboardEventType(KeyboardEventType.KEY_PRESSED);
         keyboard.addEventListener(keyboardEventSpace);
 
-        KeyboardEvent keyboardEventR = new KeyboardEvent();
-        keyboardEventSpace.setKey(KeyboardEvent.KEY_R);
-        keyboardEventSpace.setKeyboardEventType(KeyboardEventType.KEY_PRESSED);
-        keyboard.addEventListener(keyboardEventSpace);
 
 
     }

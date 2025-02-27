@@ -13,9 +13,9 @@ import java.util.ArrayList;
 
 public class GameHandler {
     static boolean isGameRunning = true;
-    static int screenWidth = 1500;
+    static int screenWidth = 1800;
     static int screenHeight = 1100;
-    static int pipeSpawnPosition = 1000;
+    static int newPipeSpawnPosition = 900;
     static int pipeSpeed = 5;
 
     public static void main(String[] args) throws InterruptedException {
@@ -27,7 +27,6 @@ public class GameHandler {
         // background adicionado mas as dimensoes estao erradas, temos de dar fix
         background = new Picture(10, 0, "resources/background.png");
         background.draw();
-
         // Math random do eixo Y no spawn das pipes.
 
         Bird bird = new Bird();
@@ -36,10 +35,10 @@ public class GameHandler {
         ArrayList<Pipe> arrayPipe = new ArrayList<>();
         arrayPipe.add(PipeFactory.pipeCreator());
 
-        while (isGameRunning = false) {
+        while (isGameRunning) {
             // create and move for each pipe
             // if last pipe in array position X is < 900
-            if (arrayPipe.get(arrayPipe.size() - 1).getX() < pipeSpawnPosition) {
+            if (arrayPipe.get(arrayPipe.size() - 1).getX() < newPipeSpawnPosition) {
                 // create pipe
                 arrayPipe.add(PipeFactory.pipeCreator());
             }
