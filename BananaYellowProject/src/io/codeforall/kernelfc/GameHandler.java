@@ -35,6 +35,8 @@ public class GameHandler {
         ArrayList<Pipe> arrayPipe = new ArrayList<>();
         arrayPipe.add(PipeFactory.pipeCreator());
 
+        // passar o while para metodo
+        isGameRunning = true;
         while (isGameRunning) {
             // create and move for each pipe
             // if last pipe in array position X is < 900
@@ -59,6 +61,7 @@ public class GameHandler {
             }
             Thread.sleep(20);
         }
+        // depois do loop, criar a chicken
         Picture coolchicken;
         coolchicken = new Picture(490,150, "resources/coolchicken.png");
         coolchicken.draw ();
