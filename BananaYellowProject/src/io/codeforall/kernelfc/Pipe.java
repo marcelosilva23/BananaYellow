@@ -15,7 +15,7 @@ public class Pipe {
     //gap between the top and bottom pipe, score´s height
     public int gap = 500;
     // tracks the groups X position
-    public int X = GameHandler.screenWidth - 200;
+    public int X = GameHandler.screenWidth - 100;
 
     // initiate bottom pipe, top pipe and invisible score rectangle
     // Y parameter to be randomized by the pipe factory

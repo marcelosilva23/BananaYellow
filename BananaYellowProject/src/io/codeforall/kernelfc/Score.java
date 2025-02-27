@@ -21,7 +21,11 @@ public class Score {
     // add score
     public static void add(int ammount) {
         score += ammount;
-        System.out.println(score);
+        int temp = GameHandler.pipeSpawnPosition + (ammount * 10);
+        if (temp > 10) {
+            GameHandler.pipeSpawnPosition = temp;
+            System.out.println(score);
+        }
     }
 
     public static void reset(){

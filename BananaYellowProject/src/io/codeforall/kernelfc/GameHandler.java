@@ -14,6 +14,7 @@ public class GameHandler {
     static boolean isGameRunning = true;
     static int screenWidth = 1500;
     static int screenHeight = 1100;
+    static int pipeSpawnPosition = 600;
 
     public static void main(String[] args) throws InterruptedException {
 
@@ -35,7 +36,7 @@ public class GameHandler {
         while (isGameRunning) {
             // create and move for each pipe
             // if last pipe in array position X is < 900
-            if (arrayPipe.get(arrayPipe.size() - 1).getX() < 900) {
+            if (arrayPipe.get(arrayPipe.size() - 1).getX() < pipeSpawnPosition) {
                 // create pipe
                 arrayPipe.add(PipeFactory.pipeCreator());
             }
