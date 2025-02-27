@@ -1,5 +1,6 @@
 package io.codeforall.kernelfc;
 
+import org.academiadecodigo.simplegraphics.graphics.Color;
 import org.academiadecodigo.simplegraphics.keyboard.Keyboard;
 import org.academiadecodigo.simplegraphics.keyboard.KeyboardEvent;
 import org.academiadecodigo.simplegraphics.keyboard.KeyboardEventType;
@@ -26,6 +27,7 @@ public class GameHandler {
         // background adicionado mas as dimensoes estao erradas, temos de dar fix
         background = new Picture(10, 0, "resources/background.png");
         background.draw();
+
         // Math random do eixo Y no spawn das pipes.
 
         Bird bird = new Bird();
@@ -34,7 +36,7 @@ public class GameHandler {
         ArrayList<Pipe> arrayPipe = new ArrayList<>();
         arrayPipe.add(PipeFactory.pipeCreator());
 
-        while (isGameRunning) {
+        while (isGameRunning = false) {
             // create and move for each pipe
             // if last pipe in array position X is < 900
             if (arrayPipe.get(arrayPipe.size() - 1).getX() < pipeSpawnPosition) {
@@ -58,11 +60,21 @@ public class GameHandler {
             }
             Thread.sleep(20);
         }
+        Picture coolchicken;
+        coolchicken = new Picture(490,150, "resources/coolchicken.png");
+        coolchicken.draw ();
+        Picture pressR;
+        pressR = new Picture(425,800, "resources/pressR.png");
+        pressR.draw ();
+        Picture fried;
+        fried = new Picture(275,720, "resources/fried.png");
+        fried.setColorAt(10000, new Color(255, 0,0));
+        fried.draw ();
 
     }
-
     public static void StopGame() {
         isGameRunning = false;
     }
+
 }
 
