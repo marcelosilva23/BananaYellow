@@ -6,15 +6,16 @@ import org.academiadecodigo.simplegraphics.pictures.Picture;
 public class Pipe {
 
     int y;
-    Picture upPipe;
-    Picture downPipe;
+    public Picture upPipe;
+    public Picture downPipe;
     // invisible score rectangle
     public Rectangle pipeScore;
+    public boolean scored;
 
     //gap between the top and bottom pipe, score´s height
     public int gap = 500;
     // tracks the groups X position
-    public int X = 1450;
+    public int X = GameHandler.screenWidth - 200;
 
     // initiate bottom pipe, top pipe and invisible score rectangle
     // Y parameter to be randomized by the pipe factory

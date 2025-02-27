@@ -9,19 +9,21 @@ public class Bird  implements KeyboardHandler {
     private Keyboard keyboard = new Keyboard(this);
 
     // handles gravity acceleratiion (to be implemented)
-    double gravity;
+    public boolean isDead = false;
+    public double gravity;
     public Picture bird;
 
-    public int jumpHeight = 100;
+    public final int jumpHeight = 50;
+    public final int GRAVITY = 1;
 
     private boolean jumping = false;
 
     // starting X position
-    int startingPosition = 100;
+    public int startingPosition = 100;
 
     public int X = startingPosition;
 
-    int Y = 100;
+    public int Y = 100;
 
     public Bird() {
         System.out.println(Y);
@@ -34,7 +36,7 @@ public class Bird  implements KeyboardHandler {
     //do move, if falling not jumping, if jumping not falling
 
     public void fall() {
-        bird.translate(0, +1);
+        bird.translate(0, GRAVITY);
         Y++;
         gravity++;
        /* while (!jumping || !isDead) {
@@ -50,6 +52,7 @@ public class Bird  implements KeyboardHandler {
 
     @Override
     public void keyPressed(KeyboardEvent keyboardEvent) {
+        if (isDead){return;}
         switch (keyboardEvent.getKey()) {
             case KeyboardEvent.KEY_SPACE:
                 jump();
