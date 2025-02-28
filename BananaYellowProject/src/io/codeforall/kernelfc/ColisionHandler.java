@@ -6,11 +6,11 @@ import org.academiadecodigo.simplegraphics.pictures.Picture;
 import java.util.ArrayList;
 
 public class ColisionHandler {
-    public static int topLimit  = 0;
-    public static int bottomLimit = 875;
-    public static int imageThreshHold = 25;
+    public static int topLimit  = GameHandler.topLimit;
+    public static int bottomLimit = GameHandler.bottomLimit;
+    public static int imageThreshHold = GameHandler.imageThreshHold;
 
-    static Sounds deadChicken = new Sounds ("resources/deadchicken.wav");
+    //static Sounds deadChicken = new Sounds ("resources/deadchicken.wav");
 
     // automatic collision detection
     public static boolean checkColision(Picture obstacle, Bird bird){
@@ -25,12 +25,10 @@ public class ColisionHandler {
     }
     // isColiding return if is colliding ? true : false
     public static boolean isColliding(ArrayList<Pipe> pipes, Bird bird){
-        System.out.println("started collision");
         if (bird.isDead){return true;}
         // is hitting the top or bottom Limit?
         if (bird.Y < topLimit || bird.Y > bottomLimit){
-            System.out.println("bird hit the limit");
-            deadChicken.play();
+            //deadChicken.play();
             GameHandler.StopGame();
 
             return true;
@@ -44,7 +42,6 @@ public class ColisionHandler {
                     checkColision(pipe.upPipe, bird) || checkColision(pipe.downPipe, bird)
             ){
                 // return true
-                System.out.println("Bird hit a pipe");
                 GameHandler.StopGame();
                 return true;
             }
@@ -57,7 +54,6 @@ public class ColisionHandler {
                             score.getY() + score.getHeight() > bird.Y &&
                             !pipe.scored
             ){
-                System.out.println("hit score");
                 Score.add(1);
                 Score.drawScore();
 

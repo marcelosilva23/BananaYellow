@@ -1,17 +1,19 @@
 package io.codeforall.kernelfc;
 
+import org.academiadecodigo.simplegraphics.graphics.Color;
 import org.academiadecodigo.simplegraphics.graphics.Text;
 
 public class Score {
     public static int score = 0;
     public static Text scoreImg;
-    public static int dificultyMultiplier  = 100;
+    public static int dificultyMultiplier  = GameHandler.dificultyMultiplier;
     public static int minDistanceBetweenPipes = 100;
 
 
     public Score() {
         scoreImg = new Text(50, 50, "0");
         scoreImg.grow(30,40);
+        scoreImg.setColor(Color.WHITE);
     }
 
     public static void drawScore(){
@@ -24,9 +26,9 @@ public class Score {
     public static void add(int ammount) {
         score += ammount;
 
-        int temp = GameHandler.newPipeSpawnPosition + (ammount * dificultyMultiplier);
+        int temp = GameHandler.newPipeTrigger + (ammount * dificultyMultiplier);
         if (temp < minDistanceBetweenPipes) {
-            GameHandler.newPipeSpawnPosition = temp;
+            GameHandler.newPipeTrigger = temp;
             System.out.println("temp" + temp);
         }
     }

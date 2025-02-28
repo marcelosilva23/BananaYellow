@@ -24,10 +24,6 @@ public class Pipe {
         upPipe = new Picture(X, y - gap, "resources/toppipe.png");
         downPipe = new Picture(X, y + gap, "resources/bottompipe.png");
         pipeScore = new Rectangle(X, y, 100, gap);
-
-        upPipe.draw();
-        downPipe.draw();
-
     }
 
     // moves the pipe group 1px to the left, used for the automove of the pipes
@@ -67,4 +63,8 @@ public class Pipe {
         return downPipe.getWidth();
     }
 
+    public void draw() {
+        upPipe.draw();
+        downPipe.draw();
+    }
 }

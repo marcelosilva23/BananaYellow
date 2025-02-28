@@ -32,21 +32,12 @@
 
         @Override
         public void keyPressed(KeyboardEvent keyboardEvent) {
-            if (bird.isDead){
-                if (keyboardEvent.getKey() == KeyboardEvent.KEY_R){
-                    try {
-                        GameHandler.restart();
-                    } catch (IOException e) {
-                        throw new RuntimeException(e);
-                    } catch (InterruptedException e) {
-                        throw new RuntimeException(e);
-                    }
-                }
-                return;
-            }
             switch (keyboardEvent.getKey()) {
                 case KeyboardEvent.KEY_SPACE:
-                    bird.jump();
+                    bird.isJumping = true;
+                    break;
+                case KeyboardEvent.KEY_R:
+                        GameHandler.isGameRunning = true;
                     break;
             }
         }

@@ -19,9 +19,11 @@ public class Bird {
     public int X = startingPosition;
 
     public int Y = 100;
+    public boolean isJumping = false;
 
     public Bird() {
         bird = new Picture(startingPosition, Y, "resources/bird.png");
+        GameHandler.invocaOTigrão = 8001;
     }
 
     public void newBird(){
@@ -29,7 +31,6 @@ public class Bird {
         bird = new Picture(startingPosition, 100, "resources/bird.png");
         Y = 100;
         acceleration = 0;
-        bird.draw();
     }
 
     //do move, if falling not jumping, if jumping not falling
