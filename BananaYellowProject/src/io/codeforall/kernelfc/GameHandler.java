@@ -4,8 +4,10 @@ package io.codeforall.kernelfc;
 import org.academiadecodigo.simplegraphics.pictures.Picture;
 import org.academiadecodigo.simplegraphics.graphics.Rectangle;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.logging.FileHandler;
 
 public class GameHandler {
     static boolean isGameRunning = true;
@@ -44,6 +46,11 @@ public class GameHandler {
         score.setScore(0);
         Score.drawScore();
         playMusic();
+
+        SaveFileHandler.saveNew("Hello");
+        SaveFileHandler.loadFile();
+
+
         startGame();
 
 
@@ -106,7 +113,6 @@ public class GameHandler {
                 restart();
                 restarting = false;
             }
-            //drawAll();
 
             // create and move for each pipe
             // if last pipe in array position X is < 900
@@ -133,13 +139,14 @@ public class GameHandler {
             Thread.sleep(20);
 
             if (bird.isJumping){
-                //jumpMusic = new Sounds("resources/chickenjump.wav");
-                //jumpMusic.play();
+                jumpMusic = new Sounds("resources/chickenjump.wav");
+                jumpMusic.play();
                 bird.jump();
                 bird.isJumping = false;
             }
 
             while (!isGameRunning) {
+
                 Thread.sleep(50);
                 restarting = true;
             }
