@@ -5,9 +5,7 @@ import org.academiadecodigo.simplegraphics.keyboard.KeyboardEventType;
 import org.academiadecodigo.simplegraphics.keyboard.KeyboardHandler;
 import org.academiadecodigo.simplegraphics.pictures.Picture;
 
-public class Bird  implements KeyboardHandler {
-    private Keyboard keyboard = new Keyboard(this);
-
+public class Bird {
     // handles gravity acceleratiion (to be implemented)
     public int acceleration;
     public boolean isDead = false;
@@ -15,8 +13,6 @@ public class Bird  implements KeyboardHandler {
 
     public final int jumpHeight = 12;
     public final int GRAVITY = 100;
-
-    private boolean jumping = false;
 
     // starting X position
     public int startingPosition = 100;
@@ -26,17 +22,19 @@ public class Bird  implements KeyboardHandler {
     public int Y = 100;
 
     public Bird() {
-        System.out.println(Y);
         bird = new Picture(startingPosition, Y, "resources/bird.png");
+    }
 
+    public void newBird(){
+        bird = new Picture(startingPosition, 100, "resources/bird.png");
+        Y = 100;
+        acceleration = 0;
         bird.draw();
-        createKeyboardEvents();
     }
 
     //do move, if falling not jumping, if jumping not falling
 
     public void fall() {
-        System.out.println(acceleration);
         if (acceleration < GRAVITY) {
             acceleration++;
         }
@@ -52,30 +50,6 @@ public class Bird  implements KeyboardHandler {
 
     }
 
-    @Override
-    public void keyPressed(KeyboardEvent keyboardEvent) {
-        if (isDead){return;}
-        switch (keyboardEvent.getKey()) {
-            case KeyboardEvent.KEY_SPACE:
-                jump();
-                break;
-        }
-    }
-    @Override
-    public void keyReleased(KeyboardEvent keyboardEvent) {
-
-    }
-
-    public void createKeyboardEvents() {
-
-        KeyboardEvent keyboardEventSpace = new KeyboardEvent();
-        keyboardEventSpace.setKey(KeyboardEvent.KEY_SPACE);
-        keyboardEventSpace.setKeyboardEventType(KeyboardEventType.KEY_PRESSED);
-        keyboard.addEventListener(keyboardEventSpace);
-
-
-
-    }
 
     //getters
     public int getWidth(){
@@ -87,6 +61,15 @@ public class Bird  implements KeyboardHandler {
     }
 
 
+    public void draw() {
+        bird.draw();
+    }
+
+    public void move(int x, int y){
+        bird.translate(x, y);
+        this.Y += y;
+        this.X += x;
+    }
 }
 
 
