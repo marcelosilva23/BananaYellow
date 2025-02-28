@@ -25,6 +25,7 @@ public class Bird {
     }
 
     public void newBird(){
+        bird = null;
         bird = new Picture(startingPosition, 100, "resources/bird.png");
         Y = 100;
         acceleration = 0;
@@ -68,6 +69,22 @@ public class Bird {
         bird.translate(x, y);
         this.Y += y;
         this.X += x;
+    }
+
+    public int getX() {
+        return X;
+    }
+
+    public void setX(int x) {
+        X = x;
+    }
+
+    public int getY() {
+        return Y;
+    }
+
+    public void setY(int y) {
+        Y = y;
     }
 }
 

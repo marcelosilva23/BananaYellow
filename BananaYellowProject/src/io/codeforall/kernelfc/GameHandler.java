@@ -22,6 +22,10 @@ public class GameHandler {
     static int newPipeSpawnPosition = 900;
     static int pipeSpeed = 5;
 
+    public static Picture fried = new Picture(275,720, "resources/fried.png");
+    public static Picture pressR = new Picture(425,800, "resources/pressR.png");
+    public static Picture coolchicken = new Picture(490,150, "resources/coolchicken.png");
+
     public static Bird bird = new Bird();
     public static MyLittkleKeyboardHandler kbh = new MyLittkleKeyboardHandler(bird);
     public static ArrayList<Pipe> arrayPipe = new ArrayList<>();
@@ -42,10 +46,7 @@ public class GameHandler {
         bird.draw();
         // Math random do eixo Y no spawn das pipes.
 
-        Bird bird = new Bird();
-        GameHandler game = new GameHandler();
 
-        ArrayList<Pipe> arrayPipe = new ArrayList<>();
         arrayPipe.add(PipeFactory.pipeCreator());
 
         // passar o while para metodo
@@ -57,9 +58,42 @@ public class GameHandler {
         isGameRunning = false;
     }
 
+    public static void drawAll(){
+        Picture background = new Picture(10, 0, "resources/background.png");
+        //background.draw();
+
+        bird.draw();
+
+        for (Pipe pipe : arrayPipe) {
+            pipe.move();
+        }
+
+        Score.drawScore();
+    }
+
     public static void restart() throws IOException, InterruptedException {
-        System.out.println("restarted");
-        bird.isDead = false;
+        isGameRunning = false;
+        Thread.sleep(500);
+
+        bird.bird.delete();
+        bird = new Bird();
+        bird.draw();
+
+        for (Pipe pipe : arrayPipe) {
+            pipe.upPipe.delete();
+            pipe.downPipe.delete();
+        }
+
+        arrayPipe.clear();
+        arrayPipe.add(PipeFactory.pipeCreator());
+
+        score.setScore(0);
+        Score.drawScore();
+
+        fried.delete();
+        pressR.delete();
+        coolchicken.delete();
+
         isGameRunning = true;
         bird.newBird();
         startGame();
@@ -68,16 +102,19 @@ public class GameHandler {
 
     public static void startGame() throws InterruptedException, IOException {
         System.out.println("gameStarted");
-        isGameRunning = true;
-        bird.isDead = false;
         while (isGameRunning) {
+            drawAll();
+
+            System.out.println("new iteration");
             // create and move for each pipe
             // if last pipe in array position X is < 900
             if (arrayPipe.get(arrayPipe.size() - 1).getX() < newPipeSpawnPosition) {
                 // create pipe
+                System.out.println("new pipe created");
                 arrayPipe.add(PipeFactory.pipeCreator());
             }
             if (arrayPipe.get(0).getX() < -200) {
+                System.out.println("pipe destroyed");
                 // create pipe
                 arrayPipe.remove(0);
             }
@@ -88,18 +125,16 @@ public class GameHandler {
             for (Pipe pipe : arrayPipe) {
                 pipe.move();
             }
+            System.out.println("pipes moved");
             //check colision
             if (ColisionHandler.isColliding(arrayPipe, bird)){
                 bird.isDead = true;
+                System.out.println("bird collided at Y " + bird.getY() + " acceleration " + bird.acceleration);
             }
             Thread.sleep(20);
         }
         // depois do loop, criar a chicken
-        Picture coolchicken;
-        coolchicken = new Picture(490,150, "resources/coolchicken.png");
         coolchicken.draw ();
-        Picture pressR;
-        pressR = new Picture(425,800, "resources/pressR.png");
         pressR.draw ();
         Picture fried;
         fried = new Picture(500, 370, "resources/youarefried.png");

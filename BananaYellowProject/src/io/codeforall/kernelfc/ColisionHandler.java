@@ -25,6 +25,7 @@ public class ColisionHandler {
     }
     // isColiding return if is colliding ? true : false
     public static boolean isColliding(ArrayList<Pipe> pipes, Bird bird){
+        System.out.println("started collision");
         if (bird.isDead){return true;}
         // is hitting the top or bottom Limit?
         if (bird.Y < topLimit || bird.Y > bottomLimit){
