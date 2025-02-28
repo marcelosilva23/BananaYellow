@@ -17,7 +17,7 @@ public class GameHandler {
     static int topLimit = 0;
     public static int bottomLimit = 875;
     public static int imageThreshHold = 25;
-    public static int dificultyMultiplier  = 100;
+    public static int dificultyMultiplier  = 200;
 
     public static Picture background = new Picture(10, 0, "resources/background.png");
     public static Picture fried = new Picture(275, 720, "resources/youarefried.png");
@@ -27,11 +27,14 @@ public class GameHandler {
     public static ArrayList<Pipe> arrayPipe = new ArrayList<>();
     public static Score score = new Score();
 
+    static Sounds deadChicken = new Sounds ("resources/deadchicken.wav");
+    static Sounds gameMusic = new Sounds("resources/gamemusic.wav");
+
+    static Sounds jumpMusic = new Sounds("resources/chickenjump.wav");
 
     public static void main(String[] args) throws InterruptedException, IOException {
 
-        //Sounds menuMusic = new Sounds("resources/menumusic.wav");
-        //Sounds gameMusic = new Sounds("resources/gamemusic.wav");
+
         Rectangle rect = new Rectangle(10, 10, screenWidth, screenHeight);
         rect.draw();
 
@@ -40,6 +43,7 @@ public class GameHandler {
         background.draw();
         score.setScore(0);
         Score.drawScore();
+        playMusic();
         startGame();
 
 
@@ -106,7 +110,7 @@ public class GameHandler {
 
             // create and move for each pipe
             // if last pipe in array position X is < 900
-            if (arrayPipe.get(arrayPipe.size() - 1).getX() < newPipeTrigger + dificultyMultiplier) {
+            if (arrayPipe.get(arrayPipe.size() - 1).getX() < newPipeTrigger) {
                 // create pipe
                 arrayPipe.add(PipeFactory.pipeCreator());
             }
@@ -129,6 +133,8 @@ public class GameHandler {
             Thread.sleep(20);
 
             if (bird.isJumping){
+                //jumpMusic = new Sounds("resources/chickenjump.wav");
+                //jumpMusic.play();
                 bird.jump();
                 bird.isJumping = false;
             }
@@ -139,6 +145,16 @@ public class GameHandler {
             }
         }
 
+    }
+
+    public static void playDeadSound(){
+        deadChicken = new Sounds ("resources/deadchicken.wav");
+        deadChicken.play();
+    }
+
+    public static void playMusic(){
+        gameMusic = new Sounds("resources/gamemusic.wav");
+        gameMusic.playLoop();
     }
 
 }

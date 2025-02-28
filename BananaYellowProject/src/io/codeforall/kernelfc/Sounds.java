@@ -39,7 +39,6 @@ public class Sounds {
     public Sounds menuMusic;
     public Sounds gameMusic;
     public Sounds deadChicken;
-    public Sounds jumpSound;
 
 
 }

@@ -10,7 +10,6 @@ public class ColisionHandler {
     public static int bottomLimit = GameHandler.bottomLimit;
     public static int imageThreshHold = GameHandler.imageThreshHold;
 
-    //static Sounds deadChicken = new Sounds ("resources/deadchicken.wav");
 
     // automatic collision detection
     public static boolean checkColision(Picture obstacle, Bird bird){
@@ -28,7 +27,7 @@ public class ColisionHandler {
         if (bird.isDead){return true;}
         // is hitting the top or bottom Limit?
         if (bird.Y < topLimit || bird.Y > bottomLimit){
-            //deadChicken.play();
+            GameHandler.playDeadSound();
             GameHandler.StopGame();
 
             return true;
@@ -42,6 +41,7 @@ public class ColisionHandler {
                     checkColision(pipe.upPipe, bird) || checkColision(pipe.downPipe, bird)
             ){
                 // return true
+                GameHandler.playDeadSound();
                 GameHandler.StopGame();
                 return true;
             }

@@ -6,7 +6,6 @@ import org.academiadecodigo.simplegraphics.graphics.Text;
 public class Score {
     public static int score = 0;
     public static Text scoreImg;
-    public static int dificultyMultiplier  = GameHandler.dificultyMultiplier;
     public static int minDistanceBetweenPipes = 100;
 
 
@@ -26,7 +25,7 @@ public class Score {
     public static void add(int ammount) {
         score += ammount;
 
-        int temp = GameHandler.newPipeTrigger + (ammount * dificultyMultiplier);
+        int temp = GameHandler.newPipeTrigger + (ammount * GameHandler.dificultyMultiplier);
         if (temp < minDistanceBetweenPipes) {
             GameHandler.newPipeTrigger = temp;
             System.out.println("temp" + temp);
