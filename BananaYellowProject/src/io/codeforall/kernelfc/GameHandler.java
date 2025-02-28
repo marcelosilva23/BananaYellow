@@ -11,6 +11,7 @@ import org.academiadecodigo.simplegraphics.keyboard.KeyboardEvent;
 
 import javax.swing.plaf.PanelUI;
 import java.io.IOException;
+import java.security.Key;
 import java.util.ArrayList;
 import java.util.LinkedList;
 
@@ -30,6 +31,8 @@ public class GameHandler {
 
     public static void main(String[] args) throws InterruptedException, IOException {
 
+        Sounds menuMusic = new Sounds("resources/menumusic.wav");
+        Sounds gameMusic = new Sounds("resources/gamemusic.wav");
         Picture background;
         Rectangle rect = new Rectangle(10, 10, screenWidth, screenHeight);
         rect.draw();
@@ -39,7 +42,10 @@ public class GameHandler {
         bird.draw();
         // Math random do eixo Y no spawn das pipes.
 
+        Bird bird = new Bird();
+        GameHandler game = new GameHandler();
 
+        ArrayList<Pipe> arrayPipe = new ArrayList<>();
         arrayPipe.add(PipeFactory.pipeCreator());
 
         // passar o while para metodo
@@ -96,8 +102,7 @@ public class GameHandler {
         pressR = new Picture(425,800, "resources/pressR.png");
         pressR.draw ();
         Picture fried;
-        fried = new Picture(275,720, "resources/fried.png");
-        fried.setColorAt(10000, new Color(255, 0,0));
+        fried = new Picture(500, 370, "resources/youarefried.png");
         fried.draw ();
 
         SaveFileHandler.loadFile();

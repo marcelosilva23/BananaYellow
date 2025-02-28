@@ -10,6 +10,8 @@ public class ColisionHandler {
     public static int bottomLimit = 875;
     public static int imageThreshHold = 25;
 
+    static Sounds deadChicken = new Sounds ("resources/deadchicken.wav");
+
     // automatic collision detection
     public static boolean checkColision(Picture obstacle, Bird bird){
         if(
@@ -27,7 +29,9 @@ public class ColisionHandler {
         // is hitting the top or bottom Limit?
         if (bird.Y < topLimit || bird.Y > bottomLimit){
             System.out.println("bird hit the limit");
+            deadChicken.play();
             GameHandler.StopGame();
+
             return true;
         }
 

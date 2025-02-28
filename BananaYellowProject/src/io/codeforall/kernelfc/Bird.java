@@ -10,7 +10,6 @@ public class Bird {
     public int acceleration;
     public boolean isDead = false;
     public Picture bird;
-
     public final int jumpHeight = 12;
     public final int GRAVITY = 100;
 
