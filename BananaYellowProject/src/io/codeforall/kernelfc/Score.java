@@ -8,23 +8,20 @@ public class Score {
     public static Text scoreImg;
     public static int minDistanceBetweenPipes = 100;
 
-
     public Score() {
         scoreImg = new Text(50, 50, "0");
-        scoreImg.grow(30,40);
+        scoreImg.grow(30, 40);
         scoreImg.setColor(Color.WHITE);
     }
 
-    public static void drawScore(){
+    public static void drawScore() {
         scoreImg.setText(score + "");
         scoreImg.draw();
     }
 
-
     // add score
     public static void add(int ammount) {
         score += ammount;
-
         int temp = GameHandler.newPipeTrigger + (ammount * GameHandler.dificultyMultiplier);
         if (temp < minDistanceBetweenPipes) {
             GameHandler.newPipeTrigger = temp;
@@ -32,23 +29,8 @@ public class Score {
         }
     }
 
-    public static void reset(){
-
-    }
-
-    public int getScore() {
-        return score;
-    }
-
     public void setScore(int score) {
         this.score = score;
     }
-
-    // public int score
-    // draw score (text)
-
-
-
-
 
 }

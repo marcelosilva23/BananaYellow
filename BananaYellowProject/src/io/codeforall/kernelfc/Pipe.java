@@ -34,33 +34,12 @@ public class Pipe {
         X = upPipe.getX();
     }
 
-    //getters / setters
-    public double getY() {
-        return y;
-    }
-
-    public void setY(int y) {
-        this.y = y;
-    }
-
-    public int getGap() {
-        return gap;
-    }
-
     public void setGap(int gap) {
         this.gap = gap;
     }
 
     public double getX() {
         return X;
-    }
-
-    public void setX(int x) {
-        X = x;
-    }
-
-    public int getWidth(){
-        return downPipe.getWidth();
     }
 
     public void draw() {

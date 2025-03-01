@@ -5,13 +5,11 @@
     import org.academiadecodigo.simplegraphics.keyboard.KeyboardEventType;
     import org.academiadecodigo.simplegraphics.keyboard.KeyboardHandler;
 
-    import java.io.IOException;
-
-    public class MyLittkleKeyboardHandler implements KeyboardHandler {
+    public class MyLittleKeyboardHandler implements KeyboardHandler {
         private final Bird bird;
         private Keyboard keyboard = new Keyboard(this);
 
-        public MyLittkleKeyboardHandler(Bird bird) {
+        public MyLittleKeyboardHandler(Bird bird) {
             this.bird = bird;
             createKeyboardEvents();
         }

@@ -1,13 +1,12 @@
 package io.codeforall.kernelfc;
 
 
+import org.academiadecodigo.simplegraphics.graphics.Color;
 import org.academiadecodigo.simplegraphics.pictures.Picture;
 import org.academiadecodigo.simplegraphics.graphics.Rectangle;
 
-import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.logging.FileHandler;
 
 public class GameHandler {
     static boolean isGameRunning = true;
@@ -19,60 +18,53 @@ public class GameHandler {
     static int topLimit = 0;
     public static int bottomLimit = 875;
     public static int imageThreshHold = 25;
-    public static int dificultyMultiplier  = 200;
-public static Picture startMenu = new Picture(10,10,"resources/startmenu.png");
+    public static int dificultyMultiplier = 200;
+
+    public static Picture startMenu = new Picture(10, 10, "resources/startmenu.png");
     public static Picture background = new Picture(10, 0, "resources/background.png");
     public static Picture fried = new Picture(475, 355, "resources/youarefried.png");
-
     public static Picture coolchicken = new Picture(600, 90, "resources/coolchicken.png");
+
     public static Bird bird = new Bird();
-    public static MyLittkleKeyboardHandler kbh = new MyLittkleKeyboardHandler(bird);
+    public static MyLittleKeyboardHandler kbh = new MyLittleKeyboardHandler(bird);
     public static ArrayList<Pipe> arrayPipe = new ArrayList<>();
     public static Score score = new Score();
 
-    static Sounds deadChicken = new Sounds ("resources/deadchicken.wav");
+    static Sounds deadChicken = new Sounds("resources/deadchicken.wav");
     static Sounds gameMusic = new Sounds("resources/gamemusic.wav");
     static Sounds menuMusic = new Sounds("resources/menumusic.wav");
-
     static Sounds jumpMusic = new Sounds("resources/chickenjump.wav");
 
     public static void main(String[] args) throws InterruptedException, IOException {
 
-        isGameRunning=false;
-        while(!isGameRunning) {
+        isGameRunning = false;
+        while (!isGameRunning) {
             startMenu.draw();
             menuMusic.playLoop();
         }
-            Rectangle rect = new Rectangle(10, 10, screenWidth, screenHeight);
-            rect.draw();
+        Rectangle rect = new Rectangle(10, 10, screenWidth, screenHeight);
+        rect.setColor(Color.DARK_GRAY);
+        rect.draw();
+        rect.fill();
 
         arrayPipe.add(PipeFactory.pipeCreator());
-
 
         background.draw();
         score.setScore(0);
         Score.drawScore();
         playMusic();
 
-        SaveFileHandler.saveNew("Hello");
-        SaveFileHandler.loadFile();
-
-
+        startMenu.delete();
         startGame();
         rect = new Rectangle(10, 10, screenWidth, screenHeight);
         rect.draw();
 
         arrayPipe.add(PipeFactory.pipeCreator());
 
-
         background.draw();
         score.setScore(0);
         Score.drawScore();
         playMusic();
-
-        SaveFileHandler.saveNew("Hello");
-        SaveFileHandler.loadFile();
-
     }
 
     public static void StopGame() {
@@ -81,29 +73,13 @@ public static Picture startMenu = new Picture(10,10,"resources/startmenu.png");
         isGameRunning = false;
     }
 
-    public static void drawAll() {
-        background.delete();
-
-        bird.bird.delete();
-        bird.fall();
-
-        for (Pipe pipe : arrayPipe) {
-            pipe.move();
-            pipe.draw();
-        }
-
-        Score.drawScore();
-    }
-
     public static void restart() throws IOException, InterruptedException {
         Thread.sleep(500);
-
 
         bird.bird.delete();
         bird = new Bird();
         bird.isJumping = false;
-
-        kbh = new MyLittkleKeyboardHandler(bird);
+        kbh = new MyLittleKeyboardHandler(bird);
 
         for (Pipe pipe : arrayPipe) {
             pipe.upPipe.delete();
@@ -122,7 +98,6 @@ public static Picture startMenu = new Picture(10,10,"resources/startmenu.png");
         Score.score = 0;
         Score.drawScore();
         startGame();
-
     }
 
     public static void startGame() throws InterruptedException, IOException {
@@ -131,7 +106,7 @@ public static Picture startMenu = new Picture(10,10,"resources/startmenu.png");
         coolchicken.delete();
         boolean restarting = false;
         while (true) {
-            if (restarting){
+            if (restarting) {
                 restart();
                 restarting = false;
             }
@@ -154,13 +129,15 @@ public static Picture startMenu = new Picture(10,10,"resources/startmenu.png");
             if (ColisionHandler.isColliding(arrayPipe, bird)) {
                 bird.isDead = true;
             }
+
             for (Pipe pipe : arrayPipe) {
                 pipe.move();
                 pipe.draw();
             }
+
             Thread.sleep(20);
 
-            if (bird.isJumping){
+            if (bird.isJumping) {
                 jumpMusic = new Sounds("resources/chickenjump.wav");
                 jumpMusic.play();
                 bird.jump();
@@ -168,7 +145,6 @@ public static Picture startMenu = new Picture(10,10,"resources/startmenu.png");
             }
 
             while (!isGameRunning) {
-
                 Thread.sleep(50);
                 restarting = true;
             }
@@ -176,15 +152,14 @@ public static Picture startMenu = new Picture(10,10,"resources/startmenu.png");
 
     }
 
-    public static void playDeadSound(){
-        deadChicken = new Sounds ("resources/deadchicken.wav");
+    public static void playDeadSound() {
+        deadChicken = new Sounds("resources/deadchicken.wav");
         deadChicken.play();
     }
 
-    public static void playMusic(){
+    public static void playMusic() {
         gameMusic = new Sounds("resources/gamemusic.wav");
         gameMusic.playLoop();
     }
-
 }
 
