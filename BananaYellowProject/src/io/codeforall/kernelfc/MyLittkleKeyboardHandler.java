@@ -32,6 +32,7 @@
 
         @Override
         public void keyPressed(KeyboardEvent keyboardEvent) {
+
             switch (keyboardEvent.getKey()) {
                 case KeyboardEvent.KEY_SPACE:
                     bird.isJumping = true;

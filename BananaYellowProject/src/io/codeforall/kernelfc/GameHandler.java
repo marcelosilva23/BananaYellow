@@ -20,10 +20,11 @@ public class GameHandler {
     public static int bottomLimit = 875;
     public static int imageThreshHold = 25;
     public static int dificultyMultiplier  = 200;
-
+public static Picture startMenu = new Picture(10,10,"resources/startmenu.png");
     public static Picture background = new Picture(10, 0, "resources/background.png");
-    public static Picture fried = new Picture(275, 720, "resources/youarefried.png");
-    public static Picture coolchicken = new Picture(490, 150, "resources/coolchicken.png");
+    public static Picture fried = new Picture(475, 355, "resources/youarefried.png");
+
+    public static Picture coolchicken = new Picture(600, 90, "resources/coolchicken.png");
     public static Bird bird = new Bird();
     public static MyLittkleKeyboardHandler kbh = new MyLittkleKeyboardHandler(bird);
     public static ArrayList<Pipe> arrayPipe = new ArrayList<>();
@@ -31,16 +32,22 @@ public class GameHandler {
 
     static Sounds deadChicken = new Sounds ("resources/deadchicken.wav");
     static Sounds gameMusic = new Sounds("resources/gamemusic.wav");
+    static Sounds menuMusic = new Sounds("resources/menumusic.wav");
 
     static Sounds jumpMusic = new Sounds("resources/chickenjump.wav");
 
     public static void main(String[] args) throws InterruptedException, IOException {
 
-
-        Rectangle rect = new Rectangle(10, 10, screenWidth, screenHeight);
-        rect.draw();
+        isGameRunning=false;
+        while(!isGameRunning) {
+            startMenu.draw();
+            menuMusic.playLoop();
+        }
+            Rectangle rect = new Rectangle(10, 10, screenWidth, screenHeight);
+            rect.draw();
 
         arrayPipe.add(PipeFactory.pipeCreator());
+
 
         background.draw();
         score.setScore(0);
@@ -52,11 +59,25 @@ public class GameHandler {
 
 
         startGame();
+        rect = new Rectangle(10, 10, screenWidth, screenHeight);
+        rect.draw();
 
+        arrayPipe.add(PipeFactory.pipeCreator());
+
+
+        background.draw();
+        score.setScore(0);
+        Score.drawScore();
+        playMusic();
+
+        SaveFileHandler.saveNew("Hello");
+        SaveFileHandler.loadFile();
 
     }
 
     public static void StopGame() {
+        coolchicken.draw();
+        fried.draw();
         isGameRunning = false;
     }
 
@@ -105,6 +126,7 @@ public class GameHandler {
     }
 
     public static void startGame() throws InterruptedException, IOException {
+        menuMusic.stop();
         bird.draw();
         coolchicken.delete();
         boolean restarting = false;
