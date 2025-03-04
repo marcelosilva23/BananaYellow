@@ -1,16 +1,17 @@
-<?xml version="1.0" ?>
+<?xml version="1.0" encoding="utf-8"?>
 <project name="BananaYellowProject" default="jarfile">
+
     <!-- Initialize build properties -->
     <target name="init" description="Initializes properties">
         <property name="project.name" value="BananaYellowProject" />
         <property name="src.dir" value="src" />
-        <property name="main.class" value="io.codeforall.kernelfc.GameHandler" />
+        <property name="main.class" value="io/codeforall/kernelfc/GameHandler" />
         <property name="build.dir" value="build" />
         <property name="classes.dir" value="${build.dir}/classes" />
         <property name="lib.dir" value="lib" />
-        <property name="resources.dir" value="resources" />
+        <property name="resources.dir" value="resources"/>
         <path id="classpath">
-            <fileset dir="${lib.dir}" includes="simplegraphics.jar"/>
+            <fileset dir="${lib.dir}" includes="**/*.jar" />
         </path>
     </target>
 
@@ -26,27 +27,27 @@
 
     <!-- Compiles the source code -->
     <target name="compile" description="Compiles the source code" depends="prepare">
-        <javac srcdir="${src.dir}" destdir="${classes.dir}">
+        <javac srcdir="${src.dir}" destdir="${classes.dir}" source="1.8" target="1.8">
             <classpath refid="classpath"/>
         </javac>
     </target>
 
-    <!-- Copies resources (images and sounds) into the build directory -->
-    <target name="copy-resources" description="Copies resources" depends="compile">
-        <mkdir dir="${build.dir}/resources"/>
-        <copy todir="${build.dir}/resources">
+    <!-- Copies resources to the build directory -->
+    <target name="copy-resources" description="Copy resources to build directory" depends="prepare">
+        <mkdir dir="${classes.dir}/resources"/>
+        <copy todir="${classes.dir}/resources">
             <fileset dir="${resources.dir}" includes="**/*"/>
         </copy>
     </target>
 
-    <!-- Creates a JAR file including resources and external libraries -->
-    <target name="jarfile" description="Archives the code and resources" depends="copy-resources">
+    <!-- Creates a JAR file -->
+    <target name="jarfile" description="Archives the code" depends="compile, copy-resources">
         <jar destfile="${build.dir}/${project.name}.jar" basedir="${classes.dir}">
             <manifest>
                 <attribute name="Main-Class" value="${main.class}" />
-                <attribute name="Class-Path" value="lib/simplegraphics.jar" />
+                <attribute name="Class-Path" value="lib/*" />
             </manifest>
-            <zipgroupfileset dir="${lib.dir}" includes="simplegraphics.jar"/>
+            <zipgroupfileset dir="${lib.dir}" includes="*.jar"/>
         </jar>
     </target>
 
